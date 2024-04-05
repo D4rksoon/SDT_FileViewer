@@ -18,10 +18,10 @@ class FileManager
 public:
     FileManager(int size = 0);
     File* addFile(QString &name);
-    void  wholeVector();
+    std::vector<File*> vecFiles();
 
 private:
-    std::vector<File*> vecFiles;
+    std::vector<File*> m_vecFiles;
 };
 
 #endif // FILEMANAGER_H
