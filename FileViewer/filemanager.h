@@ -18,6 +18,7 @@ class FileManager
 public:
     FileManager(int size = 0);
     File* addFile(QString &name);
+    void  wholeVector();
 
 private:
     std::vector<File*> vecFiles;
