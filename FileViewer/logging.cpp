@@ -4,12 +4,13 @@
 Logging::Logging()
 {}
 
-void Logging::logConsole(FileManager list)
+void Logging::logConsole()
 {
-    int size = list.vecFiles().size();
+    FileManager& instance = FileManager::Instance();
+    int size = instance.vecFiles().size();
     qDebug() << "vector size: " << size;
-    qDebug() << "Name          " << "Path          " << "Size         " << "           Existence";
-    for(auto file : list.vecFiles()){
+    qDebug() << " Name       " << "Path                " << "         Size      " << "     Existence";
+    for(auto file : instance.vecFiles()){
         QFileInfo fileInfo(file->fileName());
         QString fileName = fileInfo.fileName();
         QString filePath = fileInfo.filePath();
@@ -23,4 +24,36 @@ void Logging::logConsole(FileManager list)
             //qDebug() << "File: " << fileName << " does not exist";
         }
     }
+}
+
+void Logging::checkttt()
+{
+    emit ttt();
+}
+
+void Logging::logC()
+{
+    FileManager& instance = FileManager::Instance();
+    int size = instance.vecFiles().size();
+    qDebug() << "vector size: " << size;
+    qDebug() << " Name       " << "Path                " << "         Size      " << "     Existence";
+    for(auto file : instance.vecFiles()){
+        QFileInfo fileInfo(file->fileName());
+        QString fileName = fileInfo.fileName();
+        QString filePath = fileInfo.filePath();
+
+        if(file->open(QIODevice::ReadOnly)){
+            qDebug() << fileName << "  " << filePath << "  " << file->size() << " bytes" << "    file existence";
+            file->close();
+        }
+        else{
+            qDebug() << fileName << "  " << filePath << "  " << file->size() << " bytes" << "    File does not exist";
+            //qDebug() << "File: " << fileName << " does not exist";
+        }
+    }
+}
+
+void Logging::test()
+{
+    qDebug() << "WWWWWWWWWWWWWWWWW ";
 }

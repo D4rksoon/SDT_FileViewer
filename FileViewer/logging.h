@@ -6,7 +6,13 @@ class Logging
 {
 public:
     Logging();
-    void logConsole(FileManager list);
+    void logConsole();
+    void checkttt();
+signals:
+    void ttt();
+public slots:
+    void logC();
+    void test();
 };
 
 #endif // LOGGING_H

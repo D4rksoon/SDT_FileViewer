@@ -6,26 +6,29 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    FileManager list;
+    FileManager& instance = FileManager::Instance();
     Logging log;
+
+    //QObject::connect(instance, &FileManager::changed, log, &Logging::test);
+    //QObject::connect(instance, &FileManager::changed, log, &Logging::test);
+
     QStringList files = { "C:/QTproject/Files/f1.txt",
                           "C:\\QTproject\\Files\\f2.txt",
                           "C:\\QTproject\\allProject\\main.cpp",
-                          "C:\\QTproject\\allProject\\allProject.pro.user",
+                          "C:\\QTproject\\FileM\\main.cpp",
                           "D:\\PotPlayer\\d3dx9_43.dll",
                           "C:\\dsadsadas\\asdsa"                        //Не существует
     };
 
-
     for(auto file : files){
-        list.addFile(file);
+        instance.addFile(file);
     }
 
     while(1){
         system("cls");
-        //list.wholeVector();
-        log.logConsole(list);
+        log.logConsole();
         std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) );
+        //instance.checkChanges();
     }
 
 
