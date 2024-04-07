@@ -5,7 +5,6 @@
 #include <QFileInfo>
 #include <QString>
 #include <vector>
-#include "logging.h"
 
 class File : public QFile
 {
@@ -13,17 +12,23 @@ public:
     File(const QString &name) : QFile(name){}
     ~File() = default;
 };
-// UML диграмма. Класс зависит от других классов
-class FileManager  // Сделать с помощью паттерна SingleTon (один экземпляр)
+
+class FileManager : public QObject  // Сделать с помощью паттерна SingleTon (один экземпляр)
 {
+    Q_OBJECT
 public: // private (конструктор деструктор), отсутсвие констр. копирования. static - живет на протяжении работы программы
     static FileManager &Instance();
+
     File* addFile(QString &name);
+    bool removeFile(QString &name);
     std::vector<File*> vecFiles();
-    bool checkChanges();
+    std::vector<QDateTime> vecDates();
+    void fillVectorDates();
+    void checkChanges();
 
 signals:
     void changed();
+    void del(QString name);
 
 private:
     FileManager();
@@ -32,7 +37,7 @@ private:
     FileManager& operator= (FileManager const&);
 
     std::vector<File*> m_vecFiles;
-    // Сделать вектор дат изменения??
+    std::vector<QDateTime> m_dates;
 };
 
 #endif // FILEMANAGER_H
