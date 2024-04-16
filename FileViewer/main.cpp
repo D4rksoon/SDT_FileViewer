@@ -12,12 +12,11 @@ int main(int argc, char *argv[])
 
     QObject::connect(&instance, FileManager::changed, &log, Logging::logC);
 
-    QStringList files = { "C:/QTproject/Files/f1.txt",
-        "C:\\QTproject\\Files\\f2.txt",
-        "C:\\QTproject\\allProject\\main.cpp",
-        "C:\\QTproject\\FileM\\main.cpp",
-        "D:\\PotPlayer\\d3dx9_43.dll",
-        "C:\\dsadsadas\\asdsa"                        //Не существует
+    QStringList files = { "C:/QTproject/3 course/SDT_FileViewer/Files/f1.txt",
+        "C:/QTproject/3 course/SDT_FileViewer/Files/f2.txt",
+        "C:/QTproject/3 course/SDT_FileViewer/FileViewer/main.cpp",
+        "C:/QTproject/3 course/SDT_FileViewer/UML.png",
+        "C:/dsadsadas/asdsa"                                          //Не существует
     };
 
     for(auto file : files){
@@ -28,7 +27,7 @@ int main(int argc, char *argv[])
 
     while(1){
         instance.checkChanges();
-        std::this_thread::sleep_for( std::chrono::milliseconds( 2000 ) );
+        std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) );
     }
 
 

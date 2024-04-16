@@ -28,7 +28,6 @@ public: // private (конструктор деструктор), отсутсв
 
 signals:
     void changed();
-    void del(QString name);
 
 private:
     FileManager();

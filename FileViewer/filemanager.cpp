@@ -25,7 +25,7 @@ bool FileManager::removeFile(QString &name)
     if(!m_vecFiles.empty()){
         for(auto file : m_vecFiles){
             if(cname == file->fileName()){
-                emit del(cname);
+
                 m_vecFiles.erase(std::remove(m_vecFiles.begin(), m_vecFiles.end(), file), m_vecFiles.end());
                 return true;
             }
