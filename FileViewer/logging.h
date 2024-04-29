@@ -9,9 +9,11 @@ class Logging : public QObject
 public:
     Logging();
     void logConsole();
+    void logConsole2(QString fileName, int size, bool existence);
 
 public slots:
     void logC();
+    void logC2(QString fileName, int size, bool existence);
 };
 
 #endif // LOGGING_H

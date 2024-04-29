@@ -11,13 +11,13 @@ int main(int argc, char *argv[])
     Logging log;
 
     QObject::connect(&instance, FileManager::changed, &log, Logging::logC);
+    //QObject::connect(&instance, FileManager::changed2, &log, Logging::logC2);
 
-    QStringList files = { "C:/QTproject/Files/f1.txt",
-        "C:\\QTproject\\Files\\f2.txt",
-        "C:\\QTproject\\allProject\\main.cpp",
-        "C:\\QTproject\\FileM\\main.cpp",
-        "D:\\PotPlayer\\d3dx9_43.dll",
-        "C:\\dsadsadas\\asdsa"                        //Не существует
+    QStringList files = { "../Files/f1.txt",
+        "../Files/f2.txt",
+        "../FileViewer/main.cpp",
+        "../UML.png",
+        "C:/dsadsadas/asdsa"                                          //Не существует
     };
 
     for(auto file : files){
