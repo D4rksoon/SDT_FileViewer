@@ -10,20 +10,31 @@ void Logging::logConsole()
     FileManager& instance = FileManager::Instance();
     //int size = instance.vecFiles().size();
     //qDebug() << "vector size: " << size;
-    qDebug() << " Name       " << "Path                " << "         Size      " << "     Existence";
+    qDebug() << " Name  " << "    Size      " << "     Existence";
     for(auto file : instance.vecFiles()){
         QFileInfo fileInfo(file->fileName());
         QString fileName = fileInfo.fileName();
-        QString filePath = fileInfo.filePath();
+        bool existence = fileInfo.exists();
 
-        if(file->open(QIODevice::ReadOnly)){
-            qDebug() << fileName << "  " << filePath << "  " << file->size() << " bytes" << "    file existence";
-            file->close();
+        if(existence){
+            qDebug() << fileName << "  " << file->size() << " bytes" << "      file exist";
         }
         else{
-            qDebug() << fileName << "  " << filePath << "  " << file->size() << " bytes" << "    File does not exist";
-            //qDebug() << "File: " << fileName << " does not exist";
+            qDebug() << fileName << "  " << file->size() << " bytes" << "      file not exist";
         }
+    }
+}
+
+void Logging::logConsole2(QString fileName, int size, bool existence)
+{
+    //system("cls");
+
+    qDebug() << "File is changed";
+    if(existence){
+        qDebug() << fileName << "  " << size << " bytes" << "     file exist";
+    }
+    else{
+        qDebug() << fileName << "  " << size << " bytes" << "     file not exist";
     }
 }
 
@@ -32,3 +43,7 @@ void Logging::logC()
     logConsole();
 }
 
+void Logging::logC2(QString fileName, int size, bool existence)
+{
+    logConsole2(fileName, size, existence);
+}

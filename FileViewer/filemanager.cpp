@@ -25,7 +25,6 @@ bool FileManager::removeFile(QString &name)
     if(!m_vecFiles.empty()){
         for(auto file : m_vecFiles){
             if(cname == file->fileName()){
-
                 m_vecFiles.erase(std::remove(m_vecFiles.begin(), m_vecFiles.end(), file), m_vecFiles.end());
                 return true;
             }
@@ -56,14 +55,13 @@ void FileManager::fillVectorDates()
 
 void FileManager::checkChanges()
 {
-    FileManager& instance = FileManager::Instance();
     for(int i = 0; i < m_vecFiles.size(); i++){
         QFileInfo fileInfo(m_vecFiles[i]->fileName());
         QDateTime temp = fileInfo.lastModified();
         if(temp != m_dates[i]){
             m_dates.at(i) = temp;
+            //emit changed2(fileInfo.fileName(), fileInfo.size(), fileInfo.exists());
             emit changed();
-            //qDebug() << "Changed!!!";
             break;
         }
     }
